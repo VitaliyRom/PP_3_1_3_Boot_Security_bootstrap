@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>Spring Security Example</title>
 </head>
 <body>
 <h1>Welcome to Index PAGE!</h1>
+<br>
+<h2>1.Посетите<a th:href="@{/admin}">страницу для админа(нужны права админа)</a> </h2>
+<br>
+<h2>2.Посетите <a th:href="@{/user}">страницу для юзера( необходимо авторизоваться</a></h2>
+
+
 
 
 </body>
