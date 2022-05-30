@@ -7,7 +7,7 @@
 <body>
 <form action="#" th:method="POST" th:action="@{/admin/add}" th:object="${user}">
 
-    <input type="hidden" th:field="*{id}" th:value="user.id">
+    <input type="hidden" th:field="*{userId}" th:value="user.userId">
     <br/>
     <br/>
     <label for="name">Enter name: </label>
@@ -24,13 +24,26 @@
     <br/>
     <label for="age">Enter age: </label>
     <input type="text" th:field="*{age}" id="age"/>
+    <br>
+    <br>
+    <label for="username">Enter username</label>
+    <input type="text" th:field="*{username}" id="username">
     <br/>
     <br/>
-    <br/>
+    <label for="password">Enter password</label>
+    <input type="text" th:field="*{password}" id="password">
+    <br>
+    <br>
+    <label>Roles:
+        <select size="2" multiple name="role" required="required">
+            <option selected="selected" value="1">User</option>
+            <option value="2">Admin</option>
+        </select>
+    </label>
     <input type="submit" value="create User" />
     <br>
     <br>
-    <a th:href="@{/}">Выйти</a>
+    <a href="/index">Выйти</a>
 </form>
 </body>
 </html>

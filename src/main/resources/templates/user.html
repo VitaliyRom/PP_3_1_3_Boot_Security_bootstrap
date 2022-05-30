@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
 <head>
     <title>Spring Security Example</title>
 </head>
@@ -13,16 +13,20 @@
         <th th:width="200">Surname</th>
         <th th:width="200">Email</th>
         <th th:width="70">Age</th>
+        <th th:width="200">Username</th>
+        <th th:width="300">Password</th>
     </tr>
     <td th:utext="${user.name}">Name</td>
     <td th:utext="${user.surname}">Surname</td>
     <td th:utext="${user.email}">Hobby</td>
     <td th:utext="${user.age}">Age</td>
+    <td th:utext="${user.username}">Username</td>
+    <td th:utext="${user.password}">Password</td>
 
 </table>
 <br>
 <br>
-<a th:href="@{/}">Выйти</a>
+<a href="/index">Выйти</a>
 
 </body>
 </html>

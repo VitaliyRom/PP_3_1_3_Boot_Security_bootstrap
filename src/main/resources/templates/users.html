@@ -14,6 +14,8 @@
         <th th:width="200">Surname</th>
         <th th:width="200">Email</th>
         <th th:width="70">Age</th>
+        <th th:width="200">Username</th>
+        <th th:width="300">Password</th>
         <th th:width="150">Edit/Delete</th>
     </tr>
 
@@ -23,11 +25,13 @@
         <td th:utext="${user.surname}">Surname</td>
         <td th:utext="${user.email}">Email</td>
         <td th:utext="${user.age}">Age</td>
+        <td th:utext="${user.username}">Username</td>
+        <td th:utext="${user.password}">Password</td>
         <td>
-            <form th:action="@{'/admin/edit/' + ${user.id}}">
+            <form th:action="@{'/admin/edit/' + ${user.userId}}">
                 <input type="submit"  value="edit"/>
             </form>
-            <form th:method="DELETE" th:action="@{'/admin/delete/' + ${user.id}}">
+            <form th:method="DELETE" th:action="@{'/admin/delete/' + ${user.userId}}">
                 <input type="submit"  value="delete">
             </form>
         </td>
@@ -37,11 +41,11 @@
 <br>
 
 <a href="/admin/add">Add new user</a>
-<br/>
+
 <br>
 <br>
-<a th:href="/">Выйти</a>
-<hr/>
+<a href="/index">Выйти</a>
+
 
 </body>
 </html>
