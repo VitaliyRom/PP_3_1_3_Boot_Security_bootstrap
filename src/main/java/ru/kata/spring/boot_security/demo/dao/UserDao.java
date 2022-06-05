@@ -13,6 +13,6 @@ import java.util.Optional;
 @Transactional
 public interface UserDao extends JpaRepository<User, Long> {
     
-    @Query("Select u from User u where u.username = :username")
-    User findByUsername(String username);
+    @Query("Select u from User u where u.email = :email")
+    User findByUsername(String email);
 }

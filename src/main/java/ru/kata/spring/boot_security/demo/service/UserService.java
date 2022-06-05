@@ -14,4 +14,6 @@ public interface UserService {
     User findByUsername(String username);
     void addUser();
     User passwordCoder(User user);
+
+    void updateUser(Long id, User user);
 }

@@ -49,8 +49,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userDao.findByUsername(username);
+    public User findByUsername(String email) {
+        return userDao.findByUsername(email);
     }
     @PostConstruct
     @Override
@@ -60,9 +60,9 @@ public class UserServiceImpl implements UserService{
         Set<Role> roles2 = new HashSet<>();
         roles2.add(roleDao.findById(1L).orElse(null));
         roles2.add(roleDao.findById(2L).orElse(null));
-        User user1 = new User(1L, "John", "Smith", "john@mail.us", 43, "user",
+        User user1 = new User(1L, "John", "Smith", "user@mail.ru", 43,
                 "12345", roles1);
-        User user2 = new User(2L, "Peter", "Parker", "spy@gmail.com", 20, "admin",
+        User user2 = new User(2L, "Peter", "Parker", "admin@mail.ru", 20,
                 "54321", roles2);
         save(user1);
         save(user2);
@@ -73,6 +73,18 @@ public class UserServiceImpl implements UserService{
         user.setPassword(passwordEncoder().encode(user.getPassword()));
         return user;
     }
+
+    @Override
+    public void updateUser(Long id, User user) {
+       User userUp = userDao.getReferenceById(id);
+       userUp.setName(user.getName());
+       userUp.setSurname(user.getSurname());
+       userUp.setAge(user.getAge());
+       userUp.setPassword(user.getPassword());
+       userUp.setRoles(user.getRoles());
+       userDao.save(userUp);
+    }
+
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(11);
     }

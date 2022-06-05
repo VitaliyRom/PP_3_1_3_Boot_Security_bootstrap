@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,10 +21,6 @@ public class User implements UserDetails {
     private String email;
     private int age;
 
-    @NotEmpty(message="Username cannot be empty")
-    @Size(min = 4, message="min 4 latin characters")
-    private String username;
-
     @NotEmpty(message = "Password can not be empty")
     private String password;
 
@@ -31,7 +28,7 @@ public class User implements UserDetails {
     @JoinTable(name="users_roles",
             joinColumns = {@JoinColumn(name="user_Id", referencedColumnName = "userId")},
             inverseJoinColumns = {@JoinColumn(name="role_Id", referencedColumnName = "id" )})
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<Role>();
 
     public User(){}
 
@@ -75,9 +72,6 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -99,9 +93,6 @@ public class User implements UserDetails {
         return true;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -110,6 +101,11 @@ public class User implements UserDetails {
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
     }
 
     public void setPassword(String password) {
@@ -124,15 +120,18 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public User(Long userId, String name, String surname, String email, int age, String username, String password,
+    public User(Long userId, String name, String surname, String email, int age, String password,
                 Set<Role> roles) {
         this.userId = userId;
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.age = age;
-        this.username = username;
         this.password = password;
         this.roles = roles;
+    }
+
+    public void addRole(Role role) {
+        roles.add(role);
     }
 }
